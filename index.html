@@ -228,11 +228,16 @@
 
   /* ---------- Документы и отзывы ---------- */
   .docs,.reviews{display:grid;gap:18px;margin-top:26px;}
-  .docs{grid-template-columns:repeat(3,1fr);}
+  .docs{grid-template-columns:repeat(2,1fr);}
   .reviews{grid-template-columns:repeat(3,1fr);}
-  @media (max-width:760px){ .docs,.reviews{grid-template-columns:1fr 1fr;} }
-  @media (max-width:480px){ .docs,.reviews{grid-template-columns:1fr;} }
-  .docs .media,.reviews .media{aspect-ratio:3/4;border:1px solid var(--line);}
+  @media (max-width:760px){ .reviews{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .docs{grid-template-columns:1fr;} }
+  @media (max-width:480px){ .reviews{grid-template-columns:1fr;} }
+  .docs .media,.reviews .media{border:1px solid var(--line);}
+  /* 2 слота вместо 3: ширина выросла, высота прежняя (3 кол. × 3/4 = 2 кол. × 8/7) */
+  .docs .media{aspect-ratio:8/7;background:#fbf7f0;}
+  .docs .media img{object-fit:contain;}
+  .reviews .media{aspect-ratio:3/4;}
   .reviews{margin-top:0;}
 
   /* ---------- FAQ ---------- */
@@ -335,7 +340,7 @@
   .reveal.is-visible{opacity:1;transform:none;}
   @media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none;} }
 
-  /* ---------- Модальные окна (НОВОЕ) ---------- */
+  /* ---------- Модальные окна ---------- */
   .modal-overlay{
     position:fixed;inset:0;background:rgba(28,36,39,.6);
     backdrop-filter:blur(4px);display:none;
@@ -456,7 +461,6 @@
           <li>Психологическая готовность к школьному обучению</li>
           <li>Работа с СДВГ, ЗРР, ЗПРР, ММД, ПЭП</li>
         </ul>
-        <!-- НОВОЕ: кнопка для родителей -->
         <a href="#" class="card-link" data-modal="modal-parents">Подробнее для родителей →</a>
       </article>
       <article class="card reveal">
@@ -476,7 +480,6 @@
           <li>Восстановление речи (афазиология)</li>
           <li>Групповые занятия для пожилых по профилактике когнитивного снижения</li>
         </ul>
-        <!-- НОВОЕ: кнопка для взрослых -->
         <a href="#" class="card-link" data-modal="modal-adults">Подробнее для взрослых →</a>
       </article>
     </div>
@@ -555,9 +558,6 @@
       </div>
       <div class="media" data-label="Сертификат">
         <img src="images/diplom-2.jpg" alt="Сертификат" loading="lazy" onerror="this.remove()">
-      </div>
-      <div class="media" data-label="Сертификат">
-        <img src="images/diplom-3.jpg" alt="Сертификат" loading="lazy" onerror="this.remove()">
       </div>
     </div>
   </div>
@@ -760,7 +760,7 @@
   </div>
 </footer>
 
-<!-- ================= МОДАЛЬНЫЕ ОКНА (НОВОЕ) ================= -->
+<!-- ================= МОДАЛЬНЫЕ ОКНА ================= -->
 
 <!-- Модальное окно «Для родителей» -->
 <div class="modal-overlay" id="modal-parents" role="dialog" aria-modal="true" aria-labelledby="modal-parents-title">
@@ -890,7 +890,7 @@
     btn.style.background = '#234a3f';
   });
 
-  /* ---------- Модальные окна (НОВОЕ) ---------- */
+  /* ---------- Модальные окна ---------- */
   (function(){
     var overlays = document.querySelectorAll('.modal-overlay');
     var openers = document.querySelectorAll('[data-modal]');
